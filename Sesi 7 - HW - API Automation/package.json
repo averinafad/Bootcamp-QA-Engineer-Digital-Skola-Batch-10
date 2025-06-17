@@ -1,0 +1,21 @@
+{
+    "name":"api-automation-testing-dummy-reqresin",
+    "version":"1.0.0",
+    "description": "API-Testing-Website-RegresIn",
+    "type": "module",
+    "scripts": {
+        "jalanin":"mocha APIAutomationTests --recursive --timeout 5000 --reporter spec",
+        "jalanin-report-html":"mocha APIAutomationTests --recursive --timeout 5000 --reporter mocha-simple-html-reporter --reporter-options output=report.html",
+        "jalanin-mochawesome":"mocha APIAutomationTests --recursive --timeout 60000 --reporter mochawesome"
+    },
+    "dependencies": {
+        "node-fetch":"latest",
+        "ajv":"latest"
+    },
+    "devDependencies": {
+        "mocha":"latest",
+        "chai":"latest",
+        "mocha-simple-html-reporter":"latest",
+        "mochawesome" : "latest"
+    }
+}

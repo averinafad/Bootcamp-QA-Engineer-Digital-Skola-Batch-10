@@ -1,0 +1,157 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-06-17T14:08:24.732Z",
+    "end": "2025-06-17T14:08:26.140Z",
+    "duration": 1408,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "aba98667-37a8-4879-85cf-512e75401140",
+      "title": "",
+      "fullFile": "D:\\Mini Boothcamp Digital Skola_QA Engineer_Batch 10\\Tugas-Tugas Boothcamp DS_QA Engineer Batch 10\\Sesi 7 - HW - API Automation\\APIAutomationTests\\apitesting\\api.test.js",
+      "file": "\\APIAutomationTests\\apitesting\\api.test.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "eb413a66-7bf8-4539-b81c-1b03ed102c70",
+          "title": "API Test Suite",
+          "fullFile": "D:\\Mini Boothcamp Digital Skola_QA Engineer_Batch 10\\Tugas-Tugas Boothcamp DS_QA Engineer Batch 10\\Sesi 7 - HW - API Automation\\APIAutomationTests\\apitesting\\api.test.js",
+          "file": "\\APIAutomationTests\\apitesting\\api.test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "GET Single User",
+              "fullTitle": "API Test Suite GET Single User",
+              "timedOut": false,
+              "duration": 229,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Start timer\nconst startTime = Date.now();\n//Fetch API\nconst responseGet = await fetch(`${baseURL}/api/users/2`);\n//End timer\nconst endTime = Date.now();\nconst responseTimeGet = endTime - startTime;\nconsole.log(`Response Time: ${responseTimeGet}ms`);\n//Validasi status code, http statusnya harus 200\nexpect(responseGet.status, \"ada yang salah nih dari method GET\").to.equal(200)\n//Validasi response time < 500ms\nexpect(responseTimeGet, \"Response time lebih dari 500ms\").to.be.lessThan(500);\n// Parse response body\nconst dataGet = await responseGet.json();\n//Tambahkan validasi data ID\nexpect(dataGet.data.id, \"User ID tidak sesuai\").to.equal(2);\n//Validasi JSON Schema\nconst ajvGet = new Ajv()\n// const dataGet = await responseGet.json();\nconst cekcekGet = ajvGet.compile(schema_getngambildatauser)\nconst hasil_schemaGet = cekcekGet(dataGet)\nexpect(hasil_schemaGet, `schema is not valid from method GET`).to.be.true",
+              "err": {},
+              "uuid": "0255140b-58c7-4191-83ac-98ccaf30b9aa",
+              "parentUUID": "eb413a66-7bf8-4539-b81c-1b03ed102c70",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "POST Create User",
+              "fullTitle": "API Test Suite POST Create User",
+              "timedOut": false,
+              "duration": 388,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Start timer\nconst startTime = Date.now();\n//Fetch API\nconst newPost = {\n    \"name\": \"morpheus\",\n    \"job\": \"leader\"\n}\nconst responsePost = await fetch(`${baseURL}/api/users`, {\n    method: \"POST\",\n    headers: {\n        \"x-api-key\": \"reqres-free-v1\",\n        \"Content-Type\": \"application/json\"\n    },\n    body: JSON.stringify(newPost)\n})\n//End timer\nconst endTime = Date.now();\nconst responseTimePost = endTime - startTime;\nconsole.log(`Response Time: ${responseTimePost}ms`);\n//Validasi status code, http statusnya harus 201\n// expect(responsePost.status, \"ada yang salah nih dari method POST\").to.equal(200)\nexpect(responsePost.status, \"Status code tidak sesuai\").to.be.oneOf([201, 202]);\n//Validasi response time < 500ms\nexpect(responseTimePost, \"Response time lebih dari 500ms\").to.be.lessThan(500);\n// Parse response body\nconst dataPost = await responsePost.json();\n//Tambahkan validasi data ID\nexpect(dataPost.job, \"Job tidak sesuai\").to.equal(\"leader\");\n//Validasi JSON Schema\nconst ajvPost = new Ajv()\n// const dataPost = await responsePost.json();\nconst cekcekPost = ajvPost.compile(schema_postbikinuserbaru)\nconst hasil_schemaPost = cekcekPost(dataPost)\nexpect(hasil_schemaPost, `schema is not valid from method Post`).to.be.true",
+              "err": {},
+              "uuid": "d756a42b-498c-4969-b8a0-74340f94d5cb",
+              "parentUUID": "eb413a66-7bf8-4539-b81c-1b03ed102c70",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "PUT Update Info User",
+              "fullTitle": "API Test Suite PUT Update Info User",
+              "timedOut": false,
+              "duration": 398,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Start timer\nconst startTime = Date.now();\n//Fetch API\nconst newPut = {\n    \"name\": \"morpheus\",\n    \"job\": \"zion resident\"\n}\nconst responsePut = await fetch(`${baseURL}/api/users/2`, {\n    method: \"PUT\",\n    headers: {\n        \"x-api-key\": \"reqres-free-v1\",\n        \"Content-Type\": \"application/json\"\n    },\n    body: JSON.stringify(newPut)\n})\n//End timer\nconst endTime = Date.now();\nconst responseTimePut = endTime - startTime;\nconsole.log(`Response Time: ${responseTimePut}ms`);\n//Validasi status code, http statusnya harus 200\nexpect(responsePut.status, \"ada yang salah nih dari method Put\").to.equal(200)\n//Validasi response time < 500ms\nexpect(responseTimePut, \"Response time lebih dari 500ms\").to.be.lessThan(500);\n// Parse response body\nconst dataPut = await responsePut.json();\n//Tambahkan validasi data ID\nexpect(dataPut.job, \"Job tidak sesuai\").to.equal(\"zion resident\");\n//validasi json schema\nconst ajvPut = new Ajv()\n// const dataPut = await responsePut.json();\nconst cekcekPut = ajvPut.compile(schema_putupdatedatauser)\nconst hasil_schemaPut = cekcekPut(dataPut)\nexpect(hasil_schemaPut, `schema is not valid from method PUT`).to.be.true",
+              "err": {},
+              "uuid": "66b32b50-b64b-464c-abb3-42724528d2f7",
+              "parentUUID": "eb413a66-7bf8-4539-b81c-1b03ed102c70",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "DELETE Delete Info User",
+              "fullTitle": "API Test Suite DELETE Delete Info User",
+              "timedOut": false,
+              "duration": 382,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Start timer\nconst startTime = Date.now();\n//Fetch API\nconst responseDelete = await fetch(`${baseURL}/api/users/2`, {\n    method: \"DELETE\",\n    headers: {\n        \"x-api-key\": \"reqres-free-v1\",\n        \"Content-Type\": \"application/json\"\n    },\n})\n//End timer\nconst endTime = Date.now();\nconst responseTimeDelete = endTime - startTime;\nconsole.log(`Response Time: ${responseTimeDelete}ms`);\n//validasi http statusnya harus 204\nexpect(responseDelete.status, \"ada yang salah nih dari method DELETE\").to.equal(204)\n//Validasi response time < 500ms\nexpect(responseTimeDelete, \"Response time lebih dari 500ms\").to.be.lessThan(500);",
+              "err": {},
+              "uuid": "fdb01095-f2fa-420a-902f-01e71e727b34",
+              "parentUUID": "eb413a66-7bf8-4539-b81c-1b03ed102c70",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "0255140b-58c7-4191-83ac-98ccaf30b9aa",
+            "d756a42b-498c-4969-b8a0-74340f94d5cb",
+            "66b32b50-b64b-464c-abb3-42724528d2f7",
+            "fdb01095-f2fa-420a-902f-01e71e727b34"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1397,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 60000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 60000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.6.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}
